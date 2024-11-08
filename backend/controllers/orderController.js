@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js"
 import Stripe from "stripe"
+import { sendOrderEmail } from "../utils/email.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -17,7 +18,9 @@ const placeOrder = async (req,res) => {
             amount:req.body.amount,
             address:req.body.address
         })
-        await newOrder.save();
+        const savedOrder = await newOrder.save();
+        await sendOrderEmail({to_name:req.body.firstName, from_name:"vital eats", order_id:savedOrder._id});
+        // await sendOrderEmail({to_name:req.body.firstName,from_name:"vital eats",order_id:req.body.})
         await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
 
         const line_items = req.body.items.map((item)=>({
@@ -49,7 +52,7 @@ const placeOrder = async (req,res) => {
         //     cancel_url:`${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
         // })
 
-        res.json({success:true})
+        res.json({success:true, message:"Order Placed. Check your email!"})
 
     } catch (error) {
         console.log(error);
