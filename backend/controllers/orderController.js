@@ -19,7 +19,7 @@ const placeOrder = async (req,res) => {
             address:req.body.address
         })
         const savedOrder = await newOrder.save();
-        await sendOrderEmail({to_name:req.body.firstName, from_name:"vital eats", order_id:savedOrder._id});
+        // await sendOrderEmail({to_name:req.body.firstName, from_name:"vital eats", order_id:savedOrder._id});
         // await sendOrderEmail({to_name:req.body.firstName,from_name:"vital eats",order_id:req.body.})
         await userModel.findByIdAndUpdate(req.body.userId,{cartData:{}});
 
@@ -52,7 +52,7 @@ const placeOrder = async (req,res) => {
         //     cancel_url:`${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
         // })
 
-        res.json({success:true, message:"Order Placed. Check your email!"})
+        res.json({success:true, message:"Order Placed. Check your email!",orderId:savedOrder._id })
 
     } catch (error) {
         console.log(error);

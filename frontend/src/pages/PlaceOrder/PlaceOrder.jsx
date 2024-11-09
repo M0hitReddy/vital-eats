@@ -55,6 +55,7 @@ const PlaceOrder = () => {
       const { session_url } = response.data;
       
       await sendOrderEmail({
+        to_email: data.email,
         to_name: data.firstName,
         from_name: "vital eats",
         order_id: response.data.orderId,

@@ -4,6 +4,7 @@ import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { formatDateTime } from "../../utils/time";
 
 const MyOrders = () => {
   const { url, token } = useContext(StoreContext);
@@ -41,6 +42,7 @@ const MyOrders = () => {
                   }
                 })}
               </p>
+              <p>{formatDateTime(order.date)}</p>
               <p>${order.amount}.00</p>
               <p>Items: {order.items.length}</p>
               <p>

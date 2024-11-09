@@ -4,15 +4,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
 import './OrderTracking.css';
+import { formatDateTime,addMinutes } from "../../utils/time";
 
-const formatDateTime = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
 
-  const addMinutes = (date, minutes) => {
-    return new Date(date.getTime() + minutes * 60000);
-};
 
 const OrderTracking = () => {
   const { orderId } = useParams();
@@ -36,6 +30,8 @@ const OrderTracking = () => {
   useEffect(() => {
     if (token) {
       fetchOrderDetails();
+    // const intervalId = setInterval(fetchOrderDetails, 10000);
+    // return () => clearInterval(intervalId);
     }
   }, [token]);
 
