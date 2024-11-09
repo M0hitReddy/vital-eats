@@ -12,7 +12,9 @@ const Add = ({url}) => {
         name:"",
         description:"",
         price:"",
-        category:"Salad"
+        category:"Salad" ,
+        noOfCalories : "20" ,
+        dietary : "Vegan"
     })
 
     const onChangeHandler = (event) => {
@@ -30,13 +32,15 @@ const Add = ({url}) => {
         formData.append("price",Number(data.price))
         formData.append("category",data.category)
         formData.append("image",image)
+        formData.append("noOfCalories",Number(data.noOfCalories))
         const response = await axios.post(`${url}/api/food/add`,formData)
         if (response.data.success) {
             setData({
                 name:"",
                 description:"",
                 price:"",
-                category:"Salad"
+                category:"Salad",
+                noOfCalories:"20"
             })
             setImage(false)
             toast.success(response.data.message)
@@ -78,6 +82,22 @@ const Add = ({url}) => {
                         <option value="Pasta">Pasta</option>
                         <option value="Noodles">Noodles</option>
                     </select>
+                </div>
+                <div className="add-category flex-col">
+                    <p>Dietary</p>
+                    <select className='selectt' onChange={onChangeHandler} name="dietary">
+                        <option value="Pure Veg">Veg</option>
+                        <option value="Non Veg">Non Veg</option>
+                        <option value="Halal">Halal</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Soya Free">Soya Free</option>
+                        <option value="Low Fat">Low Fat</option>
+                        <option value="Gluten Free">Gluten Free</option>
+                    </select>
+                </div>
+                <div className="add-price flex-col">
+                    <p>Number Of Calories</p>
+                    <input className='inputclasa' onChange={onChangeHandler} value={data.noOfCalories} type="Number" name='noOfCalories' placeholder='calories' />
                 </div>
                 <div className="add-price flex-col">
                     <p>Product Price</p>
