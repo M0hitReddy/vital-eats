@@ -9,7 +9,8 @@ const FoodDisplay = ({category}) => {
 
   return (
     <div className='food-display' id='food-display'>
-        <h2 className='h2we'>Top dishes near you</h2>
+        <h2 className='h2we'>What's On Your Mind ?</h2>
+        <h1 className='h2promo'><b>Flat 175 OFF Use Promo Code 999</b></h1>
         <div className="food-display-list">
             {food_list.map((item,index)=>{
               if(category==="All" || category===item.category){

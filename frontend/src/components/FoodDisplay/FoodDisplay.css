@@ -22,3 +22,9 @@
 .lightcolors .h2we {
     color: black
 }
+
+.h2promo{
+    display: flex;
+    justify-content: center;
+    color: red;
+}
