@@ -11,9 +11,10 @@ const Add = ({url}) => {
     const [data,setData] = useState({
         name:"",
         description:"",
+        dietary:"Pure Veg",
         price:"",
         category:"Salad" ,
-        noOfCalories : "20" ,
+        calories : "" ,
         dietary : "Vegan"
     })
 
@@ -32,7 +33,8 @@ const Add = ({url}) => {
         formData.append("price",Number(data.price))
         formData.append("category",data.category)
         formData.append("image",image)
-        formData.append("noOfCalories",Number(data.noOfCalories))
+        formData.append("calories",Number(data.calories))
+        formData.append("dietary",data.dietary)
         const response = await axios.post(`${url}/api/food/add`,formData)
         if (response.data.success) {
             setData({
@@ -40,7 +42,8 @@ const Add = ({url}) => {
                 description:"",
                 price:"",
                 category:"Salad",
-                noOfCalories:"20"
+                calories:"20",
+                dietary:"Vegan"
             })
             setImage(false)
             toast.success(response.data.message)
@@ -97,11 +100,11 @@ const Add = ({url}) => {
                 </div>
                 <div className="add-price flex-col">
                     <p>Number Of Calories</p>
-                    <input className='inputclasa' onChange={onChangeHandler} value={data.noOfCalories} type="Number" name='noOfCalories' placeholder='calories' />
+                    <input className='inputclasa' onChange={onChangeHandler} value={data.calories} type="Number" name='calories' placeholder='calories' />
                 </div>
                 <div className="add-price flex-col">
                     <p>Product Price</p>
-                    <input className='inputclasa' onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='$20' />
+                    <input className='inputclasa' onChange={onChangeHandler} value={data.price} type="Number" name='price' placeholder='₹100' />
                 </div>
             </div>
             <button type='submit' className='add-btn'>ADD</button>

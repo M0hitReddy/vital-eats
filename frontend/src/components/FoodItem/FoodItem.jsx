@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import { useState } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 
-function FoodItem ({id,name,price,description,image,noOfCalories}) {
+function FoodItem ({id,name,price,description,image,calories}) {
   const {cartItems,addToCart,removeFromCart,url} = useContext(StoreContext);
   console.log(image);
 
@@ -27,8 +27,8 @@ function FoodItem ({id,name,price,description,image,noOfCalories}) {
                 <img className='ratingstars' src={assets.rating_starts} alt="" />
             </div>
             <p className="namewe">{description}</p>
-            <p className="namewe">{noOfCalories}cal</p>
-            <p className="food-item-price">₹{price * 83}</p>
+            <p className="namewe">{calories} cal</p>
+            <p className="food-item-price">₹{price}</p>
           
         </div>
     </div>

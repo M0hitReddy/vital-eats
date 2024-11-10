@@ -9,7 +9,7 @@
 .food-item-image {
     width: 100%; /* Uncommented this line */
     object-fit: cover;
-    max-height: 200px;
+    height: 200px;
     border-radius: 15px 15px 0px 0px;
 }
 .food-item-info{

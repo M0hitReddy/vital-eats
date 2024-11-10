@@ -14,7 +14,8 @@ const addFood = async (req,res) => {
         price:req.body.price,
         category:req.body.category,
         image:image_filename ,
-        noOfCalories : req.body.noOfCalories
+        calories : req.body.calories,
+        dietary : req.body.dietary
     })
     try {
         console.log(food)
