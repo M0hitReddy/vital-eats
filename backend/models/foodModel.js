@@ -8,6 +8,7 @@ const foodSchema = new mongoose.Schema({
   dietary: { type: String, required: true },
   category: { type: String, required: true },
   calories: { type: Number, required: true },
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]
 });
 
 const foodModel = mongoose.models.food || mongoose.model("food", foodSchema);

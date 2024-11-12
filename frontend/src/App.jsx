@@ -12,6 +12,7 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import OrderTracking from './pages/OrderTracking/OrderTracking'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FoodReviewPage from './pages/FoodReview'
 const App = () => {
 
   const [showLogin,setShowLogin] = useState(false)
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/verify' element={<Verify />} />
           <Route path='/myorders' element={<MyOrders />} />
           <Route path="/track-order/:orderId" element={<OrderTracking/>} />
+          <Route path="/review/:itemId" element={<FoodReviewPage/>} />
         </Routes>
       </div>
       <Footer />

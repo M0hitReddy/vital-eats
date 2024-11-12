@@ -53,7 +53,7 @@ const PlaceOrder = () => {
     });
     if (response.data.success) {
       const { session_url } = response.data;
-      
+
       await sendOrderEmail({
         to_email: data.email,
         to_name: data.firstName,
