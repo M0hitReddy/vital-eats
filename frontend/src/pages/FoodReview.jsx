@@ -236,7 +236,9 @@ const ReviewCard = ({ review }) => {
         <div>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium">{username[0]}</span>
+              <span className="text-sm font-medium">
+                {username ? username[0] : "-"}
+              </span>
             </div>
             <span className="font-medium">{username}</span>
           </div>

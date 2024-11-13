@@ -5,6 +5,7 @@ import profile_image from './profile_image.png'
 import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.png'
 import no_image from './no_image.png'
+import promocode_icon from './promocode_icon.png'
 
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
@@ -40,6 +41,7 @@ import food_31 from './food_31.png'
 import food_32 from './food_32.png'
 
 export const assets ={
+    promocode_icon,
     logo,
     add_icon,
     order_icon,
