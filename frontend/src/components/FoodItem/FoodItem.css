@@ -68,6 +68,16 @@
     width: 30px;
 }
 
+
+.full-star {
+    fill: #FFD700;
+}
+
+.empty-star {
+    fill: none
+    
+}
+
 :root .cartitemsp,
 :root .food-item-price,
 :root .food-item-desc,

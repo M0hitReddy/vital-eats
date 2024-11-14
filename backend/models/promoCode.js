@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const promoCodeSchema = new mongoose.Schema({
   code: {
     type: String,
@@ -27,4 +26,4 @@ const promoCodeSchema = new mongoose.Schema({
 
 const PromoCode = mongoose.model('PromoCode', promoCodeSchema);
 
-module.exports = PromoCode;
+export default PromoCode;

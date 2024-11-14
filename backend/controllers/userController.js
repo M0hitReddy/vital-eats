@@ -33,6 +33,11 @@ const createToken = (id, username) => {
   });
 };
 
+const getUser = async (req, res) => {
+  const user = jwt.decode(req.headers.token, process.env.JWT_SECRET);
+  res.json({ success: true, user });
+};
+
 // register user
 const registerUser = async (req, res) => {
   const { name, password, email } = req.body;
@@ -77,4 +82,4 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser };
+export { loginUser, registerUser, getUser };

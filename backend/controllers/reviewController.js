@@ -31,7 +31,9 @@ const submitReview = async (req, res) => {
 const getReviews = async (req, res) => {
   try {
     const reviews = await reviewModel.find({ foodItemId: req.params.itemId });
-    res.json({ success: true, data: reviews });
+    const sortedReviews = reviews.sort((a, b) => b.timestamp - a.timestamp);
+    res.json({ success: true, data: sortedReviews });
+    // res.json({ success: true, data: reviews });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Error" });

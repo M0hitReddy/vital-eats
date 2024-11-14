@@ -76,13 +76,13 @@ function FoodItem({ id, name, price, description, image, calories }) {
             {[...Array(5)].map((star, index) => {
               const ratingValue = index + 0.5;
               return (
-                <span key={index}>
+                <span className="stars" key={index}>
                   {avgRating >= index + 1 ? (
-                    <Star size={20} color="#FFD700" fill="#FFD700" />
+                    <Star size={20} className="full-star" color="#FFD700" fill="#FFD700" />
                   ) : avgRating >= ratingValue ? (
-                    <StarHalf size={20} color="#FFD700" fill="#FFD700" />
+                    <StarHalf size={20} className="half-star" color="#FFD700" fill="#FFD700" />
                   ) : (
-                    <Star size={20} color="#FFD700" fill="white" />
+                    <Star size={20} className="empty-star" color="#FFD700" fill="white" />
                   )}
                 </span>
               );

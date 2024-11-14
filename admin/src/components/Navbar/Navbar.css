@@ -256,9 +256,9 @@
   --light-text: #ffffff;
   --light-text-secondary: #b9b9b9;
   --light-text-desc: #d8d8d8;
-  --status-active-background: #a1faa1; /* Green background for active status */
+  --status-active-background: #e2ffe2; /* Green background for active status */
   --status-active-color: #1a4103; /* White foreground for active status */
-  --status-inactive-background: #ffcece; /* Red background for inactive status */
+  --status-inactive-background: #ffe9e9; /* Red background for inactive status */
   --status-inactive-color: #5c0000; /* White foreground for inactive status */
 }
 

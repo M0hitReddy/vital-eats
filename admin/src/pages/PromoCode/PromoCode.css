@@ -19,6 +19,12 @@
     border-radius: 8px;
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   }
+
+  .promocode-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
   
   .promocode-form-section h2,
   .promocode-list-section h2 {
@@ -90,11 +96,7 @@
     transition: background-color 0.5s;
   }
   
-  .promocode-details {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
+ 
   
   .promocode-details h3 {
     margin: 0;
@@ -109,7 +111,8 @@
   
   .status-badge {
     display: inline-block;
-    padding: 4px 8px;
+    width: max-content;
+    padding: 4px 20px;
     border-radius: 12px;
     font-size: 0.8rem;
     text-transform: capitalize;

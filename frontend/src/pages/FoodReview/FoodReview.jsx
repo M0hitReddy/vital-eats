@@ -7,13 +7,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "./FoodReview.css";
 
+
 const FoodReviewPage = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
   const [review, setReview] = useState("");
   const { itemId } = useParams();
   const [foodItem, setFoodItem] = useState({});
-  const { url, token } = useContext(StoreContext);
+  const { url, token, user } = useContext(StoreContext);
   const [reviews, setReviews] = useState([]);
   const calculateAverageRating = () => {
     if (!reviews.length) return 0;
@@ -70,6 +71,8 @@ const FoodReviewPage = () => {
       });
       setRating(0);
       setReview("");
+      console.log(user);
+      setReviews([{...reviewData, username: user.username}, ...reviews]);
       toast.success("Review submitted successfully");
       console.log("Review submitted successfully");
     } catch (error) {
@@ -79,7 +82,7 @@ const FoodReviewPage = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 review-form">
-      <div className="bg- rounded-lg shadow-lg overflow-hidden">
+      <div className="bg- rounded-lg overflow-hidden">
         {/* Header Section */}
         <div className="p-6 border-b">
           <div className="flex items-center gap-4">
@@ -97,9 +100,9 @@ const FoodReviewPage = () => {
             <div>
               <h2 className="text-2xl font-bold">{foodItem.name}</h2>
               {foodItem.description && (
-                <p className="text-gray-500">{foodItem.description}</p>
+                <p className="">{foodItem.description}</p>
               )}
-              <div className="flex gap-4 mt-1 text-sm text-gray-600">
+              <div className="flex gap-4 mt-1 text-sm">
                 {foodItem.price > 0 && <span>₹{foodItem.price}</span>}
                 {foodItem.calories > 0 && <span>{foodItem.calories} cal</span>}
               </div>
@@ -149,7 +152,7 @@ const FoodReviewPage = () => {
               className={`w-full py-2 px-4 rounded-lg text-white font-medium
                 ${
                   !rating || !review
-                    ? "bg-gray-300 cursor-not-allowed"
+                    ? "cant cursor-not-allowed"
                     : "bg-green-600 hover:bg-green-700 active:bg-green-800"
                 }`}
               disabled={!rating || !review}
@@ -159,10 +162,10 @@ const FoodReviewPage = () => {
           </form>
         </div>
       </div>
-      <hr className="mt-10" />
+      <hr className="" />
 
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden mt-10">
-        <div className="p-6 border-b">
+      <div className="reviews overflow-hidden mt-10">
+        <div className="p-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold">Customer Reviews</h3>
             <div className="flex items-center gap-2">
@@ -236,7 +239,7 @@ const ReviewCard = ({ review }) => {
       <div className="flex justify-between items-start mb-2">
         <div>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 user-image rounded-full flex items-center justify-center">
               <span className="text-sm font-medium">
                 {username ? username[0] : "-"}
               </span>
@@ -257,19 +260,19 @@ const ReviewCard = ({ review }) => {
           ))}
         </div>
       </div>
-      <p className="text-gray-600 mt-2">{reviewText}</p>
-      <div className="flex items-center gap-6 mt-3 text-sm text-gray-500">
+      <p className="review-message mt-2">{reviewText}</p>
+      <div className="flex items-center gap-6 mt-3 text-sm ">
         <span>{new Date(timestamp).toLocaleDateString()}</span>
-        <button className="flex items-center gap-1 hover:text-gray-700">
+        <button className="flex items-center gap-1 hover:underline">
           <ThumbsUp className="w-4 h-4" />
           <span>Helpful ({helpful})</span>
         </button>
-        <button className="flex items-center gap-1 hover:text-gray-700">
+        <button className="flex items-center gap-1 hover:underline">
           <Flag className="w-4 h-4" />
           <span>Report</span>
         </button>
         <button
-          className="flex items-center gap-1 hover:text-gray-700"
+          className="flex items-center gap-1 hover:underline"
           onClick={() => handleDeleteReview(review._id)}
         >
           <span>Delete</span>

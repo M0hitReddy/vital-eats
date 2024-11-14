@@ -9,10 +9,10 @@ import {
 
 const PromoCodeRouter = express.Router();
 
-PromoCodeRouter.get("/promocodes", getPromoCodes);
-PromoCodeRouter.post("/promocodes", createPromoCode);
-PromoCodeRouter.delete("/promocodes/:id", deletePromoCode);
-PromoCodeRouter.patch("/promocodes/:id/toggle", togglePromoCode);
-PromoCodeRouter.get("/promocodes/:code/validate", validatePromoCode);
+PromoCodeRouter.get("/get", getPromoCodes);
+PromoCodeRouter.post("/add", createPromoCode);
+PromoCodeRouter.delete("/:id", deletePromoCode);
+PromoCodeRouter.patch("/:id/toggle", togglePromoCode);
+PromoCodeRouter.get("/:code/validate", validatePromoCode);
 
 export default PromoCodeRouter;

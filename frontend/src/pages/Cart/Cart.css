@@ -43,10 +43,14 @@
 .cart-total hr{
     margin: 10px 0px;
 }
-.cart-total button{
+
+
+
+
+.checkout-btn{
     border: none;
     color: white;
-    background-color: tomato;
+    background-color: tomato;   
     width: max(15vw,200px);
     padding: 12px 0px;
     border-radius: 4px;
@@ -61,24 +65,32 @@
 .cart-promocode-input{
     margin-top: 10px;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
-    background-color: #eaeaea;
+    /* background-color: #eaeaea; */
     border-radius: 4px;
 }
 .cart-promocode-input input{
     background: transparent;
-    border: none;
-    outline: none;
-    padding-left: 10px;
+    /* border: none; */
+    color: var(--light-text);
+    border: 1px solid gray;
+    border-radius: 50px;
+    /* outline: none; */
+    width: 100%;
+    padding: 10px;
+    padding-left: 15px;
 }
 .cart-promocode-input button{
     width: max(10vw, 150px);
+    color: var(--dark-text);
     padding: 12px 5px;
-    background-color: black;
+    background-color: var(--light-text);
+    border-radius: 50px;
     border: none;
-    color: white;
-    border-radius: 4px;
+    /* color: white; */
+    
     cursor: pointer;
 }
 
@@ -139,6 +151,7 @@
   .remove-promo {
     background: none;
     border: none;
+    /* background-color: var(); */
     color: #dc3545;
     cursor: pointer;
     padding: 4px 8px;

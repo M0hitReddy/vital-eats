@@ -172,11 +172,13 @@
     --light-text: #ffffff;
     --light-text-secondary: #b9b9b9;
     --light-text-desc: #d8d8d8;
+    
 }
 
 /* For lightcolors */
 .lightcolors {
     --sidebar: #fff0ed;
+    --input-color: #ffffff;
     --body-color: #FFFFFF;
     --dark-text: #fff;
     --light-text: #101010;

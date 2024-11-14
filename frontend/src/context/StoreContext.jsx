@@ -20,7 +20,7 @@ const StoreContextProvider = (props) => {
       await axios.post(
         url + "/api/cart/add",
         { itemId },
-        { headers: { token } },
+        { headers: { token } }
       );
     }
   };
@@ -31,7 +31,7 @@ const StoreContextProvider = (props) => {
       await axios.post(
         url + "/api/cart/remove",
         { itemId },
-        { headers: { token } },
+        { headers: { token } }
       );
     }
   };
@@ -52,11 +52,23 @@ const StoreContextProvider = (props) => {
     setFoodList(response.data.data);
   };
 
+  const decodeToken = async (token) => {
+    try {
+      const response = await axios.get(url + "/api/user/me", {
+        headers: { token },
+      });
+      // console.log("Decoded token:", response.data.user);
+      setUser(response.data.user);
+    } catch (error) {
+      console.error("Error decoding token:", error);
+    }
+  };
+  
   const loadCartData = async (token) => {
     const response = await axios.post(
       url + "/api/cart/get",
       {},
-      { headers: { token } },
+      { headers: { token } }
     );
     setCartItems(response.data.cartData);
   };
@@ -65,6 +77,7 @@ const StoreContextProvider = (props) => {
     async function loadData() {
       await fetchFoodList();
       if (localStorage.getItem("token")) {
+        decodeToken(localStorage.getItem("token"));
         setToken(localStorage.getItem("token"));
         await loadCartData(localStorage.getItem("token"));
       }
@@ -82,6 +95,7 @@ const StoreContextProvider = (props) => {
     url,
     token,
     setToken,
+    user,
   };
 
   return (
