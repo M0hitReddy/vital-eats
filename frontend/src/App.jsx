@@ -12,7 +12,7 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import OrderTracking from './pages/OrderTracking/OrderTracking'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import FoodReviewPage from './pages/FoodReview'
+import FoodReviewPage from './pages/FoodReview/FoodReview'
 const App = () => {
 
   const [showLogin,setShowLogin] = useState(false)

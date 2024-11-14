@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { Flag, Star, ThumbsUp } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { StoreContext } from "../context/StoreContext";
+import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "./FoodReview.css";
 
 const FoodReviewPage = () => {
   const [rating, setRating] = useState(0);
@@ -77,8 +78,8 @@ const FoodReviewPage = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="max-w-2xl mx-auto p-4 review-form">
+      <div className="bg- rounded-lg shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="p-6 border-b">
           <div className="flex items-center gap-4">
