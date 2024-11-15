@@ -12,7 +12,7 @@ const PlaceOrder = () => {
     import.meta.env.VITE_APP_SERVICE_ID,
     import.meta.env.VITE_APP_TEMPLATE_ID
   );
-  const { getTotalCartAmount, token, food_list, cartItems, url } =
+  const { getTotalCartAmount, token, food_list, cartItems, url, appliedPromo } =
     useContext(StoreContext);
 
   const [data, setData] = useState({
@@ -31,6 +31,21 @@ const PlaceOrder = () => {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const calculateDiscount = () => {
+    if (!appliedPromo) return 0;
+    const subtotal = getTotalCartAmount();
+    const discount = (subtotal * appliedPromo.discount) / 100;
+    return Math.round(discount * 100) / 100; // Round to 2 decimal places
+  };
+  const getFinalTotal = () => {
+    const subtotal = getTotalCartAmount();
+    if (subtotal === 0) return 0;
+
+    const deliveryFee = 30;
+    const discount = calculateDiscount();
+    return subtotal + deliveryFee - discount;
   };
 
   const placeOrder = async (event) => {
@@ -169,18 +184,35 @@ const PlaceOrder = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>₹{getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+              <p>₹{getTotalCartAmount() === 0 ? 0 : 30}</p>
             </div>
+            {appliedPromo && (
+              <>
+                <hr />
+                <div className="cart-total-details promo-discount">
+                  <div className="discount-label">
+                    <p>Discount ({appliedPromo.code})</p>
+                    {/* <button
+                      // onClick={removePromoCode}
+                      className="remove-promo bg-black"
+                    >
+                      Remove
+                    </button> */}
+                  </div>
+                  <p>-₹{calculateDiscount()}</p>
+                </div>
+              </>
+            )}
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
               <b>
-                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+              ₹{getFinalTotal()}
               </b>
             </div>
           </div>

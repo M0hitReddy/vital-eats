@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
+  const [appliedPromo, setAppliedPromo] = useState(null);
   const [food_list, setFoodList] = useState([]);
 
   const addToCart = async (itemId) => {
@@ -73,6 +74,8 @@ const StoreContextProvider = (props) => {
     setCartItems(response.data.cartData);
   };
 
+  
+
   useEffect(() => {
     async function loadData() {
       await fetchFoodList();
@@ -96,6 +99,8 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
     user,
+    appliedPromo,
+    setAppliedPromo,
   };
 
   return (
