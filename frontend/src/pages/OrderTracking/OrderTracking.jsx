@@ -82,6 +82,7 @@ const OrderTracking = () => {
             </div>
             <div className="detail-item">
                 <span className="detail-label">Order Items:</span>
+                
                 <ul className="detail-value">
                     {order.items.map((item, index) => (
                         <li key={index}>
@@ -90,11 +91,12 @@ const OrderTracking = () => {
                     ))}
                 </ul>
             </div>
+            <hr/>
             <div className="detail-item">
-              <span className="detail-label" style={{fontSize:"20px", color:"black"}}><strong>Total Amount:</strong></span>
-              <span className="detail-value" style={{fontSize:"20px", color:"black"}}>
+              <span className="detail-label" style={{fontSize:"20px"}}><strong>Total Amount:</strong></span>
+              <span className="detail-value" style={{fontSize:"20px"}}>
 
-                ${order.amount}
+              ₹{order.amount}
               </span>
             </div>
             {/* <div className="detail-item">

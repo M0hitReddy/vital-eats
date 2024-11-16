@@ -66,7 +66,61 @@ const getFoodById = async (req, res) => {
   }
 };
 
-export { addFood, listFood, removeFood, getFoodById };
+const getTrendingItems = async (req, res) => {
+  try {
+    console.log("Fetching trending items");
+    const trendingItems = await foodModel.aggregate([
+      {
+        $lookup: {
+          from: "orders",
+          localField: "_id",
+          foreignField: "items._id", // 'items' should contain 'foodId'
+          as: "orderData",
+        },
+      },
+      {
+        $lookup: {
+          from: "reviews",
+          localField: "_id",
+          foreignField: "_id",
+          as: "reviewData",
+        },
+      },
+      {
+        $addFields: {
+          orderCount: { $size: "$orderData" },
+          averageRating: { $avg: "$reviewData.rating" },
+        },
+      },
+      {
+        $sort: { orderCount: -1, averageRating: -1 },
+      },
+      {
+        $limit: 10, // Limit to top 10 trending items
+      },
+      {
+        $project: {
+          name: 1,
+          description: 1,
+          price: 1,
+          image: 1,
+          dietary: 1,
+          category: 1,
+          calories: 1,
+          orderCount: 1,
+          averageRating: 1,
+        },
+      },
+    ]);
+
+    res.status(200).json(trendingItems);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch trending items" });
+  }
+};
+
+export { addFood, listFood, removeFood, getFoodById, getTrendingItems };  
 
 // export { addFood, listFood, removeFood, getFoodById, submitReview };
 

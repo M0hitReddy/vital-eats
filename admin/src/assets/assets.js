@@ -6,6 +6,7 @@ import upload_area from './upload_area.png'
 import parcel_icon from './parcel_icon.png'
 import no_image from './no_image.png'
 import promocode_icon from './promocode_icon.png'
+import trending_icon from './trending_icon.png'
 
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
@@ -48,7 +49,14 @@ export const assets ={
     profile_image,
     upload_area,
     parcel_icon,
-    no_image
+    no_image,
+    trending_icon,
+    food_1,
+    food_2,
+    food_3,
+    food_4, 
+    food_5,
+    food_6,
 }
 export const food_list = [
     {

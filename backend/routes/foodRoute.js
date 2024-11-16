@@ -2,6 +2,7 @@ import express from "express";
 import {
   addFood,
   getFoodById,
+  getTrendingItems,
   // getReviews,
   listFood,
   removeFood,
@@ -26,6 +27,7 @@ const upload = multer({ storage: storage });
 foodRouter.post("/add", upload.single("image"), addFood);
 foodRouter.get("/list", listFood);
 foodRouter.post("/remove", removeFood);
+foodRouter.get("/trending", getTrendingItems);
 foodRouter.get("/:itemId", getFoodById);
 // foodRouter.post("/review", authMiddleware, submitReview);
 // foodRouter.get("/reviews/:itemId", getReviews);

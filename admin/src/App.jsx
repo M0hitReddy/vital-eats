@@ -8,6 +8,7 @@ import Orders from './pages/Orders/Orders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PromoCode from './pages/PromoCode/PromoCode'
+import Trending from './pages/Trending/Trending'
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/list" element={<List url={url}/>}/>
           <Route path="/orders" element={<Orders url={url}/>}/>
           <Route path='/promocode' element={<PromoCode url={url}/>}/>
+          <Route path="/trending" element={<Trending url={url}/>}/>
         </Routes>
       </div>
     </div>

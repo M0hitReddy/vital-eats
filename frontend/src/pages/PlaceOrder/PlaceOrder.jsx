@@ -14,6 +14,7 @@ const PlaceOrder = () => {
   );
   const { getTotalCartAmount, token, food_list, cartItems, url, appliedPromo } =
     useContext(StoreContext);
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     firstName: "",
@@ -61,7 +62,7 @@ const PlaceOrder = () => {
     let orderData = {
       address: data,
       items: orderItems,
-      amount: getTotalCartAmount() + 2,
+      amount: getFinalTotal(),
     };
     let response = await axios.post(url + "/api/order/place", orderData, {
       headers: { token },
@@ -76,13 +77,12 @@ const PlaceOrder = () => {
         order_id: response.data.orderId,
       });
       toast.success(response.data.message);
+      navigate("/track-order/" + response.data.orderId);
       // window.location.replace("myorders");
     } else {
       alert("Error");
     }
   };
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
@@ -211,9 +211,7 @@ const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>
-              ₹{getFinalTotal()}
-              </b>
+              <b>₹{getFinalTotal()}</b>
             </div>
           </div>
           <button type="submit">PROCEED</button>

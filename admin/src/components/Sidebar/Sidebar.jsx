@@ -23,6 +23,10 @@ const Sidebar = () => {
           <img className="promocodee" width={30} height={30} src={assets.promocode_icon} alt="" />
           <p>Promocodes</p>
         </NavLink>
+        <NavLink to="/trending" className="sidebar-option">
+          <img className="trendingg" width={30} height={30} src={assets.trending_icon} alt="" />
+          <p>Trending</p>
+        </NavLink>
       </div>
     </div>
   );

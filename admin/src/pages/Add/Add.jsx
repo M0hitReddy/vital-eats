@@ -13,7 +13,6 @@ const Add = ({ url }) => {
     price: "",
     category: "Salad",
     calories: "",
-    dietary: "Vegan",
   });
 
   const onChangeHandler = (event) => {
